@@ -177,9 +177,13 @@ class ProbeManagerImpl implements ProbeManager {
 
             if (probe instanceof MethodEntryProbe) {
                 methodEntryProbes.add(processClassName, methodNameFilter, (MethodEntryProbe) probe);
-            } else if (probe instanceof MethodExitProbe) {
+            }
+
+            if (probe instanceof MethodExitProbe) {
                 methodExitProbes.add(processClassName, methodNameFilter, (MethodExitProbe) probe);
-            } else {
+            }
+
+            if (!(probe instanceof MethodEntryProbe) && !(probe instanceof MethodExitProbe)) {
                 methodProbes.add(processClassName, methodNameFilter, (MethodProbe) probe);
             }
 
@@ -305,7 +309,7 @@ class ProbeManagerImpl implements ProbeManager {
                     return;
                 }
 
-                for (ObjectAllocationProbe p : probes) {
+                for (final ObjectAllocationProbe p : probes) {
                     p.run(args);
                 }
             }
