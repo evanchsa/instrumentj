@@ -21,6 +21,8 @@ package instrumentj;
  */
 public interface Constants {
 
+	public static final String EXCLUDE_ANNOTATION = "Linstrumentj/Exclude;";
+
     public static final String INSTRUMENTJ_STATIC_PROFILER_INTERFACE = "instrumentj/StaticProfilerInterface";
 
     public static final String METHOD_ENTER_PROBES = "methodEnterProbes";
