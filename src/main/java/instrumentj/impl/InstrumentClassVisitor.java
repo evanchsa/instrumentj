@@ -16,6 +16,9 @@
 package instrumentj.impl;
 
 
+import instrumentj.Constants;
+
+import org.objectweb.asm.AnnotationVisitor;
 import org.objectweb.asm.ClassVisitor;
 import org.objectweb.asm.MethodVisitor;
 import org.objectweb.asm.Opcodes;
@@ -27,6 +30,8 @@ import org.objectweb.asm.Opcodes;
 public class InstrumentClassVisitor extends ClassVisitor {
 
     private final String className;
+
+    private boolean excludeClass;
 
     /**
      *
@@ -44,6 +49,15 @@ public class InstrumentClassVisitor extends ClassVisitor {
     }
 
     @Override
+    public AnnotationVisitor visitAnnotation(String desc, boolean visible) {
+        if (Constants.EXCLUDE_ANNOTATION.equals(desc)) {
+            excludeClass = true;
+        }
+
+        return super.visitAnnotation(desc, visible);
+    }
+
+    @Override
     public MethodVisitor visitMethod(
             final int access,
             final String name,
@@ -52,7 +66,11 @@ public class InstrumentClassVisitor extends ClassVisitor {
             final String[] exceptions)
     {
         final MethodVisitor mv = super.visitMethod(access, name, desc, signature, exceptions);
-        return new InstrumentMethodVisitor(className, mv, access, name, desc);
+        if (excludeClass) {
+            return mv;
+        } else {
+            return new InstrumentMethodVisitor(className, mv, access, name, desc);
+        }
     }
 
     @Override
