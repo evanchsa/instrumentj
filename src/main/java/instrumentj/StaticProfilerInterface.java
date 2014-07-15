@@ -15,9 +15,12 @@
  */
 package instrumentj;
 
+import instrumentj.impl.CallStackHelper;
 import instrumentj.impl.InstrumentMethodVisitor;
 import instrumentj.impl.ProfilerControllerImpl;
 import instrumentj.probes.Probe;
+
+import java.io.PrintStream;
 
 
 /**
@@ -33,10 +36,12 @@ public enum StaticProfilerInterface {
      * @author Stephen Evanchik (evanchsa@gmail.com)
      *
      */
-    public interface Profiler extends ProbeManager, ProfilerController {
+    public interface Profiler extends ProbeManager, ProfilerController, CallStack {
     };
 
     private static boolean initialized = false;
+
+    private static final CallStackHelper CALL_STACK_HELPER = new CallStackHelper();
 
     /**
      * Invoked by the profile whenever a method entry is detected. This includes
@@ -53,6 +58,8 @@ public enum StaticProfilerInterface {
         if (!INSTANCE.profilerController.isActive()) {
             return;
         }
+
+        CALL_STACK_HELPER.push(methodName, methodDescription);
 
         INSTANCE.probeExecutor.methodEntryProbes(className, methodName, methodDescription);
     }
@@ -76,7 +83,11 @@ public enum StaticProfilerInterface {
             return;
         }
 
+        CALL_STACK_HELPER.peek().markExiting();
+
         INSTANCE.probeExecutor.methodExitProbes(className, methodName, methodDescription, opcode);
+
+        CALL_STACK_HELPER.pop();
     }
 
     public static void objectAllocationProbes(final String className) {
@@ -141,6 +152,16 @@ public enum StaticProfilerInterface {
             }
 
             @Override
+            public boolean findFirstParent(String methodName) {
+                return CALL_STACK_HELPER.findFirstParent(methodName);
+            }
+
+            @Override
+            public boolean findParent(String methodName) {
+                return CALL_STACK_HELPER.findParent(methodName);
+            }
+
+            @Override
             public long getObjectSize(final Object objectToSize) {
                 return profilerController.getObjectSize(objectToSize);
             }
@@ -148,6 +169,26 @@ public enum StaticProfilerInterface {
             @Override
             public boolean isActive() {
                 return profilerController.isActive();
+            }
+
+            @Override
+            public Entry peek() {
+                return CALL_STACK_HELPER.peek();
+            }
+
+            @Override
+            public void pop() {
+                CALL_STACK_HELPER.pop();
+            }
+
+            @Override
+            public void push(final String methodName, final String methodDescription) {
+                CALL_STACK_HELPER.push(methodName, methodDescription);
+            }
+
+            @Override
+            public void printStackTrace(final PrintStream out) {
+                CALL_STACK_HELPER.printStackTrace(out);
             }
 
             @Override
