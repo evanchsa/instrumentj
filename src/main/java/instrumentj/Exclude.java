@@ -23,7 +23,7 @@ import instrumentj.probes.Probe;
  */
 public @interface Exclude {
 
-	String methodNameFilter() default Probe.WILDCARD;
+    String methodNameFilter() default Probe.WILDCARD;
 
-	String methodDescriptionFilter() default Probe.WILDCARD;
+    String methodDescriptionFilter() default Probe.WILDCARD;
 }

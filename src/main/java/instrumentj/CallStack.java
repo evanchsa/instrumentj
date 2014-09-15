@@ -29,7 +29,7 @@ public interface CallStack {
      * @author Stephen Evanchik (evanchsa@gmail.com)
      *
      */
-	interface Entry {
+    interface Entry {
 
         /**
          * Determines if this call stack entry is about to exit
@@ -37,31 +37,31 @@ public interface CallStack {
          * @return {@code true} if the call stack is exiting; {@code false} if
          *         the entry is new
          */
-		boolean isExiting();
+        boolean isExiting();
 
         /**
          * Returns the argument descriptors for the method
          *
          * @return the argument descriptors for the method
          */
-		String getMethodDescription();
+        String getMethodDescription();
 
         /**
          * Returns the name of the method
          *
          * @return the name of the method
          */
-		String getMethodName();
+        String getMethodName();
 
-		/**
-		 * Marks the entry as about to exit
-		 */
-		void markExiting();
-	}
+        /**
+         * Marks the entry as about to exit
+         */
+        void markExiting();
+    }
 
-	boolean findFirstParent(String methodName);
+    boolean findFirstParent(String methodName);
 
-	boolean findParent(String methodName);
+    boolean findParent(String methodName);
 
     Entry peek();
 

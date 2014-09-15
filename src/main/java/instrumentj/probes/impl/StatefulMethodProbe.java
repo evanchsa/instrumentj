@@ -26,12 +26,12 @@ import instrumentj.probes.MethodExitProbe;
  */
 public abstract class StatefulMethodProbe implements MethodEntryProbe, MethodExitProbe {
 
-	@Override
-	public final void run(Object... args) {
-		final CallStack.Entry stack = StaticProfilerInterface.INSTANCE.getProfiler().peek();
+    @Override
+    public final void run(Object... args) {
+        final CallStack.Entry stack = StaticProfilerInterface.INSTANCE.getProfiler().peek();
 
-		doRun(stack.isExiting(), args);
-	}
+        doRun(stack.isExiting(), args);
+    }
 
     /**
      * Implement this method to perform stateful measurements
@@ -40,5 +40,5 @@ public abstract class StatefulMethodProbe implements MethodEntryProbe, MethodExi
      *            {@code true} if the method is exiting; {@code false} otherwise
      * @param args
      */
-	protected abstract void doRun(boolean exiting, Object... args);
+    protected abstract void doRun(boolean exiting, Object... args);
 }
