@@ -34,8 +34,8 @@
   </contributors>
   <licenses>
     <license>
-      <name>Eclipse Public License v1.0</name>
-      <url>http://www.eclipse.org/legal/epl-v10.html</url>
+      <name>Apache License 2.0</name>
+      <url>http://www.apache.org/licenses/LICENSE-2.0</url>
       <distribution>repo</distribution>
       <comments>A business-friendly OSS license</comments>
     </license>
