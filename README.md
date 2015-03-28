@@ -2,6 +2,7 @@ instrumentj
 ===========
 
 Interactive Java Profiler using instrumentation techniques
+[![Build Status](https://travis-ci.org/evanchsa/instrumentj.svg?branch=master)](https://travis-ci.org/evanchsa/instrumentj)
 
 Instrumenting your program
 ===========
