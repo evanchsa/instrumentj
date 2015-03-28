@@ -20,6 +20,7 @@ import instrumentj.StaticProfilerInterface;
 
 import org.objectweb.asm.MethodVisitor;
 import org.objectweb.asm.Opcodes;
+import org.objectweb.asm.Type;
 import org.objectweb.asm.commons.AdviceAdapter;
 
 /**
@@ -75,8 +76,8 @@ public class InstrumentMethodVisitor extends AdviceAdapter implements Constants 
      */
     @Override
     protected void onMethodEnter() {
-
-        if ("<init>".equals(methodName)) {
+        final boolean constructor = "<init>".equals(methodName);
+        if (constructor) {
             visitLdcInsn(className);
 
             visitMethodInsn(
@@ -89,6 +90,16 @@ public class InstrumentMethodVisitor extends AdviceAdapter implements Constants 
         visitLdcInsn(className);
         visitLdcInsn(methodName);
         visitLdcInsn(methodDescription);
+
+        final Type[] argTypes = Type.getArgumentTypes(methodDescription);
+        final int argCount = argTypes.length;
+
+        if (argCount > 0) {
+            loadArgArray();
+        } else {
+            visitIntInsn(Opcodes.BIPUSH, 1);
+            visitTypeInsn(Opcodes.ANEWARRAY, "java/lang/Object");
+        }
 
         visitMethodInsn(
             INVOKESTATIC,

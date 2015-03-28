@@ -34,4 +34,8 @@ public class SomeClass {
     public void cMethod() {
         System.out.println("cMethod");
     }
+
+    public void dMethod(String arg, int arg2) {
+        System.out.println("dMethod: " + arg + " " + Integer.valueOf(arg2));
+    }
 }

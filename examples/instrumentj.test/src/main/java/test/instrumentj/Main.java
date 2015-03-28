@@ -72,12 +72,17 @@ public class Main implements Runnable {
         m.run();
     }
 
+    public Main() {
+        // TODO Auto-generated constructor stub
+    }
+
     @Override
     public void run() {
         try {
             while (true) {
                 someClass.aMethod();
                 someClass.bMethod();
+                someClass.dMethod("argument tech", 5);
 
                 Thread.sleep(10 * 1000);
             }

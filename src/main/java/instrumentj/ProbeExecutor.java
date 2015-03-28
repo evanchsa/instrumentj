@@ -21,9 +21,9 @@ package instrumentj;
  */
 public interface ProbeExecutor {
 
-    public void objectAllocationProbes(final String className);
+    public void objectAllocationProbes(String className);
 
-    public void methodEntryProbes(final String className, final String methodName, final String methodDescription);
+    public void methodEntryProbes(String className, String methodName, String methodDescription, Object[] methodArgs);
 
-    public void methodExitProbes(final String className, final String methodName, final String methodDescription, final int opcode);
+    public void methodExitProbes(String className, String methodName, String methodDescription, int opcode);
 }

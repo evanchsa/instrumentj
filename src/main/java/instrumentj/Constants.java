@@ -27,11 +27,13 @@ public interface Constants {
 
     public static final String METHOD_ENTER_PROBES = "methodEnterProbes";
 
-    public static final String METHOD_ENTER_PROBES_DESC = "(Ljava/lang/String;Ljava/lang/String;Ljava/lang/String;)V";
+    public static final String METHOD_ENTER_PROBES_DESC =
+            "(Ljava/lang/String;Ljava/lang/String;Ljava/lang/String;[Ljava/lang/Object;)V";
 
     public static final String METHOD_EXIT_PROBES = "methodExitProbes";
 
-    public static final String METHOD_EXIT_PROBES_DESC = "(Ljava/lang/String;Ljava/lang/String;Ljava/lang/String;I)V";
+    public static final String METHOD_EXIT_PROBES_DESC =
+            "(Ljava/lang/String;Ljava/lang/String;Ljava/lang/String;I)V";
 
     public static final String OBJECT_ALLOCATION_PROBES = "objectAllocationProbes";
 

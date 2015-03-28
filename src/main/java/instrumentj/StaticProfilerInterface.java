@@ -54,14 +54,19 @@ public enum StaticProfilerInterface {
      * @param methodDescription
      *            the argument descriptors for the method
      */
-    public static void methodEnterProbes(final String className, final String methodName, final String methodDescription) {
+    public static void methodEnterProbes(
+            final String className,
+            final String methodName,
+            final String methodDescription,
+            final Object[] methodArgs)
+    {
         if (!INSTANCE.profilerController.isActive()) {
             return;
         }
 
         CALL_STACK_HELPER.push(methodName, methodDescription);
 
-        INSTANCE.probeExecutor.methodEntryProbes(className, methodName, methodDescription);
+        INSTANCE.probeExecutor.methodEntryProbes(className, methodName, methodDescription, methodArgs);
     }
 
     /**
@@ -78,7 +83,12 @@ public enum StaticProfilerInterface {
      *            consult {@link InstrumentMethodVisitor#MethodExit(int)} for
      *            more information about this value
      */
-    public static void methodExitProbes(final String className, final String methodName, final String methodDescription, final int opcode) {
+    public static void methodExitProbes(
+            final String className,
+            final String methodName,
+            final String methodDescription,
+            final int opcode)
+    {
         if (!INSTANCE.profilerController.isActive()) {
             return;
         }

@@ -45,14 +45,14 @@ public class ProbeExecutorImpl implements ProbeExecutor {
     }
 
     @Override
-    public void methodEntryProbes(final String className, final String methodName, final String methodDescription) {
+    public void methodEntryProbes(final String className, final String methodName, final String methodDescription, final Object[] methodArgs) {
         final MethodEntryProbe methodEntryProbe = probeManagerImpl.getMethodEntryProbe(className, methodName);
 
         if (methodEntryProbe == null) {
             return;
         }
 
-        methodEntryProbe.run(className, methodName, methodDescription);
+        methodEntryProbe.run(className, methodName, methodDescription, methodArgs);
     }
 
     @Override
