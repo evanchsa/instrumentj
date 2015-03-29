@@ -70,7 +70,7 @@ public class GroovyShellSession implements Runnable {
             final Groovysh groovy = new Groovysh(Main.class.getClassLoader(), binding, io);
 
             try {
-                groovy.run((String[])null);
+                groovy.run();
             } catch (final Exception e) {
                 logger.log(Level.SEVERE, "Exception encountered while running shell", e);
             }
@@ -78,6 +78,7 @@ public class GroovyShellSession implements Runnable {
             if (!socket.isClosed()) {
                 socket.close();
             }
+
         } catch (final Exception e) {
             logger.log(Level.SEVERE, "Exception encountered while creating shell", e);
         } finally {
