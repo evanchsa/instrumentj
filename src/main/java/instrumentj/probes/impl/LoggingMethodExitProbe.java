@@ -15,35 +15,18 @@
  */
 package instrumentj.probes.impl;
 
-import instrumentj.probes.MethodExitProbe;
-import instrumentj.probes.Probe;
 
 /**
  * @author Stephen Evanchik (evanchsa@gmail.com)
  */
-public class LoggingMethodExitProbe implements MethodExitProbe {
-
-    @Override
-    public String getClassNameFilter() {
-        return Probe.WILDCARD;
-    }
-
-    @Override
-    public String getMethodDescriptionFilter() {
-        return Probe.WILDCARD;
-    }
-
-    @Override
-    public String getMethodNameFilter() {
-        return Probe.WILDCARD;
-    }
+public class LoggingMethodExitProbe extends BaseMethodProbe {
 
     @Override
     public void run(Object... args) {
         final String threadName = Thread.currentThread().getName();
 
         final StringBuilder sb = new StringBuilder("Exit:" + threadName);
-        for (Object o : args) {
+        for (final Object o : args) {
             sb.append("|");
             sb.append(o.toString());
         }

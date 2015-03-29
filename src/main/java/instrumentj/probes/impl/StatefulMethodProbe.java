@@ -19,12 +19,21 @@ import instrumentj.CallStack;
 import instrumentj.StaticProfilerInterface;
 import instrumentj.probes.MethodEntryProbe;
 import instrumentj.probes.MethodExitProbe;
+import instrumentj.probes.Probe;
 
 /**
  * @author Stephen Evanchik (evanchsa@gmail.com)
  *
  */
-public abstract class StatefulMethodProbe implements MethodEntryProbe, MethodExitProbe {
+public abstract class StatefulMethodProbe extends BaseMethodProbe implements MethodEntryProbe, MethodExitProbe {
+
+    public StatefulMethodProbe() {
+        super(Probe.WILDCARD, Probe.WILDCARD, Probe.WILDCARD);
+    }
+
+    public StatefulMethodProbe(final String classNameFilter, final String methodNameFilter, final String methodDescriptionFilter) {
+        super(classNameFilter, methodNameFilter, methodDescriptionFilter);
+    }
 
     @Override
     public final void run(Object... args) {

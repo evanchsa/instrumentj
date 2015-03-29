@@ -15,22 +15,13 @@
  */
 package instrumentj.probes.impl;
 
-
 /**
  * @author Stephen Evanchik (evanchsa@gmail.com)
+ *
  */
-public class LoggingMethodEntryProbe extends BaseMethodProbe {
+public class StatefulMethodProbeTemplate extends StatefulMethodProbe {
 
     @Override
-    public void run(Object... args) {
-        final String threadName = Thread.currentThread().getName();
-
-        final StringBuilder sb = new StringBuilder("Enter:" + threadName);
-        for (final Object o : args) {
-            sb.append("|");
-            sb.append(o.toString());
-        }
-
-        System.out.println(sb.toString());
+    protected void doRun(boolean exiting, Object... args) {
     }
 }
