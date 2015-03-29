@@ -15,13 +15,14 @@
  */
 package instrumentj.probes.impl;
 
+import instrumentj.probes.MethodEntryProbe;
 import instrumentj.probes.Probe;
 
 /**
  * @author Stephen Evanchik (evanchsa@gmail.com)
  *
  */
-public class MethodEntryProbeTemplate extends BaseMethodProbe {
+public class MethodEntryProbeTemplate extends BaseMethodProbe implements MethodEntryProbe {
 
     public MethodEntryProbeTemplate() {
         super(Probe.WILDCARD, Probe.WILDCARD, Probe.WILDCARD);
