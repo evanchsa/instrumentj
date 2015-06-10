@@ -15,11 +15,12 @@
  */
 package instrumentj.probes.impl;
 
+import instrumentj.probes.MethodEntryProbe;
 
 /**
  * @author Stephen Evanchik (evanchsa@gmail.com)
  */
-public class LoggingMethodEntryProbe extends BaseMethodProbe {
+public class LoggingMethodEntryProbe extends BaseMethodProbe implements MethodEntryProbe {
 
     @Override
     public void run(Object... args) {
