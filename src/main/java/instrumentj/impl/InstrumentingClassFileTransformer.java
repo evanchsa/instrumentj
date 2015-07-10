@@ -97,8 +97,9 @@ public class InstrumentingClassFileTransformer implements ClassFileTransformer {
 
         final InstrumentClassVisitor probeClassVisitor = new InstrumentClassVisitor(classWriter, className);
 
-        classReader.accept(probeClassVisitor, ClassReader.SKIP_DEBUG);
+        classReader.accept(probeClassVisitor, ClassReader.SKIP_DEBUG | ClassReader.EXPAND_FRAMES);
 
         return classWriter.toByteArray();
+
     }
 }
