@@ -83,6 +83,8 @@ public class Main implements Runnable {
                 someClass.aMethod();
                 someClass.bMethod();
                 someClass.dMethod("argument tech", 5);
+                someClass.eMethod();
+                someClass.fMethod(5);
 
                 Thread.sleep(10 * 1000);
             }

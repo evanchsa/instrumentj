@@ -38,4 +38,16 @@ public class SomeClass {
     public void dMethod(String arg, int arg2) {
         System.out.println("dMethod: " + arg + " " + Integer.valueOf(arg2));
     }
+
+    public void eMethod() {
+    	for (int i = 0; i < 10; i++){
+    		System.out.println("eMethod...:"+i);
+    	}
+    }
+
+    public void fMethod(int i) {
+    	while (i > 0) {
+    		System.out.println("fMethod...:"+ (--i));
+    	}
+    }
 }
