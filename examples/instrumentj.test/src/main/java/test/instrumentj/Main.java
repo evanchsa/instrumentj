@@ -29,7 +29,7 @@ import test.instrumentj.impl.SomeClass;
  */
 public class Main implements Runnable {
 
-    private final SomeClass someClass = new SomeClass("Test");
+    private final SomeClass someClass = new SomeClass("Test1", "Test2");
 
     @Exclude
     static class TestStatefulMethodProbe extends StatefulMethodProbe {

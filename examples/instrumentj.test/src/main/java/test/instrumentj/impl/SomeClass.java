@@ -21,10 +21,12 @@ package test.instrumentj.impl;
  */
 public class SomeClass {
 
-	final String s;
+	final String one;
+	final String two;
 
-    public SomeClass(String str) {
-        this.s = str;
+    public SomeClass(String one, String two) {
+        this.one = one;
+        this.two = two;
     }
 
     public void aMethod() {
