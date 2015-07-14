@@ -21,6 +21,12 @@ package test.instrumentj.impl;
  */
 public class SomeClass {
 
+	final String s;
+
+    public SomeClass(String str) {
+        this.s = str;
+    }
+
     public void aMethod() {
         System.out.println("aMethod");
 
